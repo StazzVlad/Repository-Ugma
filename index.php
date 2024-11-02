@@ -2,19 +2,20 @@
 
 <!DOCTYPE html>
 <html lang="es">
-
     <head>
     </head>
     <?php 
+    include("./vistas/login.php");
 
 
+/*
         //---Logica para manejo de vistas---///
     //-Entrar a home si no esta en una pagina definida
     if(!isset($_GET['vista']) || $_GET['vista']==""){
         $_GET['vista']="inicio";
     }
 
-    //-Si esta en una pagina distinta al login y 404: Agregar nadbar y script-//
+    //-Si esta en una pagina distinta al login y 404: Agregar nadbar-//
     if(is_file("./vistas/".$_GET['vista'].".php") && $_GET['vista']!="login" && $_GET['vista']!="404"){
         include("./inc/header.php");
         include("./vistas/".$_GET['vista'].".php"); 
@@ -25,4 +26,5 @@
             include("./vistas/404.php");
         }
     } 
+    */
     ?>
