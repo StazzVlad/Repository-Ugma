@@ -1,0 +1,242 @@
+@import url('estilos.css');
+
+* {
+    font-family: var(--fuente-primaria);
+}
+
+body {
+    height: 7000px;
+}
+
+header {
+    display: block;
+    height: cal(5.625rem);
+    box-shadow: 0 5px 15px rgba(45, 68, 168,0.5);
+    background:var(--color-azul);
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+}
+
+.contenedor {
+    display: grid;
+    grid-template-columns: 0.75fr 3fr 1fr;
+    width: 98%;
+    margin: 0 auto;
+}
+
+span {
+    margin-left: .5rem;
+    line-height: 1.2;
+    color: var(--color-azul-n1);
+    font-size: 0.81rem;
+}
+
+.bar i {
+    padding: .5rem;
+}
+
+/*----------------------------- 💌 LOGO ----------------------------*/
+.logo {
+    display: flex;
+    max-width: 100%;
+    max-height: 5rem;
+    padding: .625rem 0;
+    align-items: center;
+    gap: .625rem 0;
+}
+
+.logo img {
+    width: 5rem;
+    height: auto;
+}
+
+
+/*----------------------------- 💌 NAVEGADOR ----------------------------*/
+nav {
+    display: flex;
+    flex-direction: column;
+    
+    height: 100%;
+}
+
+/* 🔍 Buscador*/
+.buscador {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-grow: 0.75;
+    margin: .3125rem 0;
+}
+
+.buscador input{
+    align-self: flex-end;
+    width: 98%;
+    height: 80%;
+}
+
+.buscador button{
+    align-self: flex-end;
+    padding: .3125rem;
+    width: auto;
+    height: 80%;
+}
+
+/* ⏸ Menu*/
+.bar {
+    background-color: rgb(245, 193, 97);
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    background: #002869;
+    flex-grow: 1;
+}
+
+.bar li {
+    height: 100%;
+    width: 10rem;
+    border-right: 1px solid rgb(235, 177, 69);
+}
+
+.bar li a {
+    color: var(--color-blanco);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.bar .has-dropdown ul li a{
+    padding: .75rem 0;
+    transition: all 0.3s ease-in-out;
+    color: #916D22;
+}
+
+.bar .has-dropdown ul li a:hover{
+    color: #483611;
+    
+}
+
+.bar li a:hover {
+    background-color: rgb(235, 177, 69);
+    color: #483611;
+}
+
+.bar li a.active {
+    background-color: rgb(165, 113, 16);
+    color: white;
+}
+
+.dropdown {
+    background-color: var(--color-amarillo);
+    padding: 0;
+    list-style: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    transform: translateY(-10px);
+    pointer-events: none;
+}
+
+
+.bar li.has-dropdown:hover .dropdown {
+    opacity: 1; /* Hace visible el dropdown */
+    transform: translateY(0); /* Vuelve a su posición original */
+    pointer-events: auto; /* Permite interacciones cuando es visible */
+    
+}
+   
+
+/*----------------------------- 💌 ENLACES ----------------------------*/
+button {
+    font-size: .75rem; /* general */
+    border: 1px solid transparent; /*general*/
+    font-weight: 600; /*general*/
+    letter-spacing: 0.8px; /*gneral*/
+    text-transform: uppercase; /*mayusculas*/
+    cursor: pointer; /*gemeral*/
+    transition: all 0.3s ease-in-out; /*general*/
+
+    color: var(--color-azul-n1);
+    background:#002869;
+    padding: 10px 15px;
+}
+
+button:hover {
+    background-color: var(--color-amarillo);
+}
+
+button:hover {
+    color: var(--color-amarillo-n11); /* Color del texto al hacer hover */
+}
+
+button:hover a {
+    color: var(--color-amarillo-n11); /* Color del texto del enlace al hacer hover */
+}
+
+.ugma a, .usuario a { 
+    text-decoration: none; /* Sin subrayado */
+    color: inherit;
+}
+
+
+.enlaces-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /*horizontal*/
+    margin-left: .625rem;
+}
+
+.enlaces-header i {
+    margin-right: .625rem;
+}  
+
+.enlaces-header i.only {
+    margin-right: 0px;
+    font-size: 1rem;
+}  
+
+
+
+.ugma, .usuario {
+    display: flex; /* Establece un contenedor flexible */
+    align-items: center; /* Alinea verticalmente en el centro */
+    margin-top: 10px; /* Espacio entre los grupos de botones */
+    width: 100%; /* Asegura que ocupen todo el ancho del contenedor */
+}
+
+/*----------------------------- 💌 MEDIA ----------------------------*/
+
+@media (max-width: 1024px){
+    * {
+        font-size: .85rem;
+    }
+
+    .contenedor {
+        grid-template-columns: 1fr 3fr 1fr;
+    }
+
+    .ugma a, .usuario a{
+        padding: .5rem .75rem;
+    }
+
+    .logo span {
+        display: none;
+    }
+    .logo {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .logo img {
+        width: 100%;
+        height: auto;
+    }
+}
