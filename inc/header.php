@@ -80,13 +80,38 @@
                 </div>  
 
                 <div class="usuario">
+                    <?php
+                        error_reporting(0);
+                        $validar = $_SESSION['nombre'];
+                        if($validar == null || $validar = ''){
+                            echo('
+                                <button><a href="./index.php?login&registrarse"> <i class="fa-solid fa-user"></i>Registrarse</a></button>
+                                <button><a href="./index.php?login"><i class="fa-solid fa-glasses"></i>Acceder</a></button>   
+                            ') ;
+                        }
+                        else{
+                            echo('
+                                <button><a href=""><i class="fa-solid fa-user"></i>Mi Perfil</a></button>  
+                                <button><a href="./vistas/logout.php"><i class="fa-solid fa-user"></i>Cerrar Sesion</a></button>  
+                            ');               
+                        }
+                    ?>
+                    <!--  Oculto
                     <button><a href=""> <i class="fa-solid fa-user"></i>Registrarse</a></button>
-                    <button><a href=""><i class="fa-solid fa-glasses"></i>Acceder</a></button>    
-                    <button><a href=""><i class="fa-solid fa-heart only"></i></a></button>
+                    <button><a href=""><i class="fa-solid fa-glasses"></i>Acceder</a></button> 
+                    -->   
+                    <button><a href="" ><i class="fa-solid fa-heart only"></i></a></button>
                 </div>
             </div>
         </div>
 
     </header>
+    <?php 
+    error_reporting(0);
+    $nombre_usuario = $_SESSION['nombre'];
+    echo "<p style=\"position:absolute;top:15% \">Hola '$nombre_usuario'</p>";
+    
+    ?>
+    
 </body>
 </html>

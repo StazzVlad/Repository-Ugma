@@ -1,3 +1,12 @@
+<?php
+    error_reporting(0);
+    $validar = $_SESSION['nombre'];
+    if(!($validar == null || $validar =="")){
+        header("Location: ./");
+    }
+    
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -25,7 +34,7 @@
         <div class="login-contenedor" id="login-contenedor">
 
             <div class="formulario-contenedor registrarse">
-                <form action="">
+                <form action="./php/usuario_insertar.php" method="POST" class="FormularioAjax" autocomplete="off">
                     <h1>Crear cuenta</h1>
 
                     <div class="iconos-redes">
@@ -36,16 +45,17 @@
 
                     <span>O usa tu cuenta gmail y datos para registrarte</span>
 
-                    <input type="text" name="" placeholder="Nombre">
-                    <input type="email" name="" placeholder="Correo electrónico">
-                    <input type="password" name="" placeholder="Contraseña">
+                    <input type="text" name="usuario_nombre" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,40}" placeholder="Nombre" required>
+                    <input type="email" name="usuario_email" pattern="[a-zA-Z1-9@._-]{12,40}" placeholder="Correo electrónico" required>
+                    <input type="password" name="usuario_clave" placeholder="Contraseña" required>
 
                     <button>Registrarse</button>
                 </form>
+                <div style="top:85%; width=100%; text-align: center;" class="formulario-contenedor form-rest"></div> <!-- luego se borra este div de atras -->
             </div>
 
             <div class="formulario-contenedor acceder">
-                <form action="">
+                <form action="" method="POST" autocomplete="off">
                     <h1>Iniciar sesión </h1>
 
                     <div class="iconos-redes">
@@ -56,13 +66,23 @@
 
                     <span>Ingresa tu correo y contraseña</span>
 
-                    <input type="email" name="" placeholder="Correo electrónico">
-                    <input type="password" name="" placeholder="Contraseña">
+                    <input type="email" name="login_correo" placeholder="Correo electrónico" required>
+                    <input type="password" name="login_clave" placeholder="Contraseña" require>
 
                     <a href="">¿Olvidaste tu contraseña?</a>
 
                     <button>Acceder</button>
+
+                    <?php
+                        if(isset($_POST['login_correo']) && isset($_POST['login_clave'])){
+                            require_once "./php/main.php";
+                            require_once "./php/iniciar_sesion.php";
+                        }
+
+                    ?>
+
                 </form>
+                <div class="form-rest"></div>
             </div>
 
             <div class="interruptor-contenedor">
@@ -94,6 +114,7 @@
     <footer></footer>
 
     <script src="./js/script_login.js"></script>
+    <script src="./js/ajax.js"></script>    
 </body>
 </html>
 

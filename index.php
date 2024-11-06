@@ -5,8 +5,19 @@
     <head>
     </head>
     <?php 
-    include("./vistas/login.php");
 
+    //error_reporting(0);
+    //$validar = $_SESSION['nombre'];
+    //echo "Hola: '$validar'";
+
+    
+
+    if(isset($_GET['login'])){
+        include("./vistas/login.php");
+    }else{
+        include("./inc/header.php");
+        
+    }
 
 /*
         //---Logica para manejo de vistas---///
@@ -26,5 +37,5 @@
             include("./vistas/404.php");
         }
     } 
-    */
+*/
     ?>

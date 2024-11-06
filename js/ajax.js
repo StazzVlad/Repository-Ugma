@@ -24,9 +24,9 @@ function enviar_formulario_ajax(e){
         fetch(action,config)
         .then(respuesta => respuesta.text())
         .then(respuesta =>{ 
-           alert(respuesta);
-           //let contenedor=document.querySelector(".form-rest");
-            //contenedor.innerHTML = respuesta;
+           //alert(respuesta); //despues descomentar esto de arriba
+           let contenedorMensaje=document.querySelector(".form-rest");
+           contenedorMensaje.innerHTML = respuesta;
         });
     }
 
