@@ -12,9 +12,15 @@ main{
     height: 100vh;
 }
 
+/*------------------------- Volver --------------------------------------*/
+.enlace {
+    margin: 1rem;
+    position: absolute;
+}
+
 /*--------------------------- CONTENEDOR PRINCIPAL ----------------------*/
 .login-contenedor{
-    background-color: var(--color-blanco);
+    background-color: var(--color-seccion);
     border-radius: 30px;
     box-shadow: 0 5px 15px rgba(81, 45, 168, 0.15);
     position: relative;
@@ -36,23 +42,23 @@ main{
 }
 
 .login-contenedor a {
-    color: var(--color-gris-oscuro);
+    color: var(--color-texto);
     font-size: 13px;
     text-decoration: none;
     margin: .9375rem 0 .625rem;
 }
 
 .login-contenedor a:hover {
-    color: var(--color-azul);
+    color: var(--color-titulo);
     text-decoration-line: underline;
 }
 
 
 .login-contenedor button {
-    background-color: var(--color-azul);
-    color: var(--color-blanco);
+    background-color: var(--color-titulo);
+    color: var(--color-seccion);
     margin-top: 10px;
-    font-size: .75rem; /* general */
+    font-size: .75rem; 
     padding: .625rem 2.8125rem; /*general*/
     border: 1px solid transparent; /*general*/
     border-radius: .25rem; /*general*/
@@ -64,24 +70,24 @@ main{
 }
 
 .login-contenedor button:hover {
-    background-color: var(--color-amarillo);
-    color: var(--color-azul);
+    background-color: var(--color-acento);
+    color: var(--color-titulo-acento-dark);
 }
 
 .login-contenedor button.oculto {
     background-color: transparent;
-    border-color: var(--color-blanco);
+    border-color: var(--color-seccion);
     transition: 0.5s;
 }
 
 .login-contenedor button.oculto:hover {
-    background-color:  var(--color-amarillo);
-    color: var(--color-azul);
+    background-color: var(--color-acento);
+    color: var(--color-titulo-acento-dark);
     border-color: transparent;
 }
 
 .login-contenedor form {
-    background-color:  var(--color-blanco);
+    background-color: var(--color-seccion);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -91,7 +97,7 @@ main{
 }
 
 .login-contenedor input {
-    background-color: var(--color-gris);
+    background-color: var(--color-dominante);
     border: none;
     margin: 8px 0;
     padding: 10px 15px;
@@ -100,14 +106,16 @@ main{
     width: 100%;
     border: 1px solid transparent; 
     transition: border-color 0.3s; 
+    color: var(--color-titulo);
 }
 
 .login-contenedor input:focus {
-    border-color:  var(--color-azul); /* Cambia el color del borde al enfocar */
-    outline: none; 
+    border-color:  var(--color-secundario); /* Cambia el color del borde al enfocar */
+    outline: none;
+    font-size: 14px; 
 }
 
-/*--------------------------- CONTENEDOR ACCEDER ----------------------*/
+/*--------------------------- CONTENEDOR ACCEDER/REGISTRARSE ----------------------*/
 .formulario-contenedor {
     position: absolute;
     top: 0;
@@ -151,30 +159,7 @@ main{
     }
 }
 
-/*--------------------------- OBJETOS EN CONTENEDORES ----------------------*/
-
-.iconos-redes {
-    margin: 20px;
-}
-
-.iconos-redes a {
-    
-    border-radius: 20%;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 3px;
-    width: 40px;
-    height: 40px;
-    background:  var(--color-azul-n6);
-    color:  var(--color-blanco);
-    transition: all 0.3s ease-in-out;
-}
-
-.iconos-redes a:hover {
-    background: var(--color-amarillo);
-    color:  var(--color-azul);
-}
+/*--------------------------- INTERRUPTORES ----------------------*/
 
 .interruptor-contenedor {
     position: absolute;
@@ -194,9 +179,9 @@ main{
 }
 
 .interruptor {
-    background-color: var(--color-azul);
+    background-color: var(--color-secundario);
     height: 100%;
-    color:  var(--color-blanco);
+    color:  var(--color-seccion);
     position: relative;
     left: -100%;
     height: 100%;
@@ -207,20 +192,20 @@ main{
 
 .login-contenedor.active .interruptor{
     transform: translateX(50%);
-    background-color: var(--color-amarillo);
-    color:  var(--color-azul);
+    background-color: var(--color-acento);
+    color:  var(--color-titulo-acento-dark);
 }
 
 .login-contenedor.active .interruptor button{
     background-color: transparent;
-    border: 1px solid  var(--color-azul);
-    color:  var(--color-azul);
+    border: 1px solid  var(--color-titulo-acento-dark);
+    color:  var(--color-titulo-acento-dark);
 }
 
 .login-contenedor.active .interruptor button:hover{
-    background-color:  var(--color-azul);
+    background-color:  var(--color-secundario);
     border: 1px solid transparent;
-    color:  var(--color-amarillo);
+    color: var(--color-seccion);
 }
 
 .interruptor-panel {

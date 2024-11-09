@@ -28,7 +28,8 @@
 </head>
 
 <body>
-    
+    <a href="index.php" class="enlace"><i class="fa-brands fa-instagram"></i> Volver a inicio</a>
+
     <main>
         
         <div class="login-contenedor" id="login-contenedor">
@@ -51,7 +52,7 @@
 
                     <button>Registrarse</button>
                 </form>
-                <div style="top:85%; width=100%; text-align: center;" class="formulario-contenedor form-rest"></div> <!-- luego se borra este div de atras -->
+                <div style="top:85%; width:100%; text-align: center;" class="formulario-contenedor form-rest"></div> <!-- luego se borra este div de atras -->
             </div>
 
             <div class="formulario-contenedor acceder">
@@ -67,7 +68,7 @@
                     <span>Ingresa tu correo y contraseña</span>
 
                     <input type="email" name="login_correo" placeholder="Correo electrónico" required>
-                    <input type="password" name="login_clave" placeholder="Contraseña" require>
+                    <input type="password" name="login_clave" placeholder="Contraseña" required>
 
                     <a href="">¿Olvidaste tu contraseña?</a>
 
@@ -89,10 +90,8 @@
                 <div class="interruptor">
 
                     <div class="interruptor-panel interruptor-izquierdo">
-                        <h1>Bienvenido de</h1>
-
                         <p>Si ya tienes una cuenta ingresa tus datos para acceder al <strong>Repositorio digital UGMA</strong></p>
-
+                        <!-- <script src="./js/script_login.js"></script> -->
                         <button class="oculto" id="acceder">Acceder</button>
                     </div>
 
@@ -114,7 +113,7 @@
     <footer></footer>
 
     <script src="./js/script_login.js"></script>
-    <script src="./js/ajax.js"></script>    
+    <script src="./js/ajax.js"></script>   
 </body>
 </html>
 
