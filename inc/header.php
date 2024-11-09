@@ -18,7 +18,7 @@
 </head>
 <body>
     <header>
-        <div class="contenedor">
+        <div class="contenedor-header">
                 
             <div class="logo">
                 <img src="./img/UGMA-logo.png" alt="Logo">
@@ -27,8 +27,8 @@
 
             <nav>
                 <div class="buscador">
-                    <input type="search" placeholder="Buscar">
-                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <input type="search" placeholder="Buscar" class="input-primario">
+                    <button class="btn-primario-amarillo"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
 
                 <ul class="bar">
@@ -52,20 +52,26 @@
                             <li><a href="#">Derecho</a></li>
                             <li><a href="#">Psicología</a></li>
                             <li><a href="#">FACES</a></li>
+                            <li><a href="#">Odontología</a></li>
                         </ul>
                     </li>
 
-                    <li class="has-dropdown">
+                    <li class="has-dropdown carreras">
                         <a href="#"><i class="fa-solid fa-graduation-cap"></i> Carreras <i class="fa-solid fa-chevron-down"></i></a>
                         <ul class="dropdown">
-                            <li><a href="#">Sistemas</a></li>
-                            <li><a href="#">Informática</a></li>
-                            <li><a href="#">Civil</a></li>
-                            <li><a href="">Administración</a></li>
-                            <li><a href="">Derecho</a></li>
-                            <li><a href="">Psicología</a></li>
+                            <li><a href="#"><center>Ingeniería en Sistemas</center></cente></a></li>
+                            <li><a href="#"><center>Ingeniería Informática</center></a></li>
+                            <li><a href="#"><center>Ingeniería Civil</center></a></li>
+                            <li><a href="#"><center>Ingeniería en mantenimiento</center></a></li>
+                            <li><a href="#"><center>Contaduría pública</center></a></li>
+                            <li><a href="#"><center>Economía</center></a></li>
+                            <li><a href="#"><center>Administración</center></a></li>
+                            <li><a href="#"><center>Derecho</center></a></li>
+                            <li><a href="#"><center>Psicología</center></a></li>
+                            <li><a href="#"><center>Odontología</center></a></li>
                         </ul>
                     </li>
+                    
 
 
                     
@@ -74,9 +80,9 @@
 
             <div class="enlaces-header">
                 <div class="ugma">
-                    <button><a href=""><i class="fa-solid fa-chalkboard-user"></i>Estudia con nosotros</a></button>
-                    <button><a href=""><i class="fa-brands fa-facebook only"></i></a></button>
-                    <button><a href=""><i class="fa-brands fa-instagram only"></i></a></button>
+                    <a href="" class="enlace"><i class="fa-solid fa-chalkboard-user"></i>Estudia con nosotros</a>
+                    <button class="btn-secundario-azul"><a href=""><i class="fa-brands fa-facebook only"></i></a></button>
+                    <button class="btn-secundario-amarillo"><a href=""><i class="fa-brands fa-instagram only"></i></a></button>
                 </div>  
 
                 <div class="usuario">
@@ -85,27 +91,29 @@
                         $validar = $_SESSION['nombre'];
                         if($validar == null || $validar = ''){
                             echo('
-                                <button><a href="./index.php?login&registrarse"> <i class="fa-solid fa-user"></i>Registrarse</a></button>
-                                <button><a href="./index.php?login"><i class="fa-solid fa-glasses"></i>Acceder</a></button>   
+                                <button class="btn-enlace-azul"><a href="./index.php?login&registrarse"><i class="fa-solid fa-user"></i>Registrarse</a></button>
+                                <button class="btn-enlace-azul"><a href="./index.php?login"><i class="fa-solid fa-glasses"></i>Acceder</a></button>                                
                             ') ;
                         }
                         else{
                             echo('
-                                <button><a href=""><i class="fa-solid fa-user"></i>Mi Perfil</a></button>  
-                                <button><a href="./vistas/logout.php"><i class="fa-solid fa-user"></i>Cerrar Sesion</a></button>  
+                                <button class="btn-enlace-azul"><a href="#"><i class="fa-solid fa-user"></i>Mi Perfil</a></button>  
+                                <button class="btn-enlace-azul"><a href="./vistas/logout.php"><i class="fa-solid fa-user"></i>Cerrar Sesion</a></button>  
                             ');               
                         }
                     ?>
-                    <!--  Oculto
-                    <button><a href=""> <i class="fa-solid fa-user"></i>Registrarse</a></button>
-                    <button><a href=""><i class="fa-solid fa-glasses"></i>Acceder</a></button> 
-                    -->   
-                    <button><a href="" ><i class="fa-solid fa-heart only"></i></a></button>
+                    
+                    <!-- <button class="btn-enlace-azul"><a href="login.html"><i class="fa-solid fa-glasses"></i>Acceder</a></button>  -->
+                    <button class="btn-primario-azul"><a href=""><i class="fa-solid fa-heart only"></i></a></button>
                 </div>
             </div>
         </div>
 
     </header>
+
+    <main>
+        <div class="color-blue"></div>
+    </main>
     <?php 
     error_reporting(0);
     $nombre_usuario = $_SESSION['nombre'];
@@ -113,5 +121,6 @@
     
     ?>
     
+
 </body>
 </html>

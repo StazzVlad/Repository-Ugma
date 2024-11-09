@@ -4,6 +4,8 @@
     $email = limpiar_cadena($_POST['login_correo']);
     $clave = limpiar_cadena($_POST['login_clave']);
 
+    $limpio = true;
+
     
     #Verificar los campos obligatorios si estan vacios
     if($email == "" || $clave== ""){
@@ -27,7 +29,7 @@
         El correo no coincide con el formato adecuado
         </div>
         ';
-        exit();
+        //exit();
     }
     //verificar clave
     if(verificar_datos("[a-zA-Z0-9$@*._-]{8,20}",$clave)){
@@ -37,7 +39,7 @@
         La clave no coincide con el formato adecuado
         </div>
         ';
-        exit();
+        //exit();
     }
 
     $chequear_usuario = conexion();
