@@ -2,9 +2,15 @@
 
     // Conexion a la base de datos //
     function conexion(){
-    $pdo= new PDO('mysql:host=localhost:33065;dbname=Repositorio','root','');
-        return $pdo;
-    }
+		try {
+			$pdo = new PDO('mysql:host=127.0.0.1:33065;dbname=repositorio', 'root', '');
+			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		} catch (PDOException $e) {
+			echo 'Error de conexión: ' . $e->getMessage();
+		}
+		return $pdo;
+	}
+	
 
     # Limpiar cadenas de texto #
 	function limpiar_cadena($cadena){

@@ -51,7 +51,7 @@
 
                     <button>Registrarse</button>
                 </form>
-                <div style="top:85%; width=100%; text-align: center;" class="formulario-contenedor form-rest"></div> <!-- luego se borra este div de atras -->
+                <div style="top:85%; width:100%; text-align: center;" class="formulario-contenedor form-rest"></div> <!-- luego se borra este div de atras -->
             </div>
 
             <div class="formulario-contenedor acceder">

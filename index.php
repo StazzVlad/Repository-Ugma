@@ -4,13 +4,9 @@
 <html lang="es">
     <head>
     </head>
+    <body>
     <?php 
-
-    //error_reporting(0);
-    //$validar = $_SESSION['nombre'];
-    //echo "Hola: '$validar'";
-
-    
+    //include("./php/new_trabajo.php");
 
     if(isset($_GET['login'])){
         include("./vistas/login.php");
@@ -19,8 +15,9 @@
         
     }
 
+
 /*
-        //---Logica para manejo de vistas---///
+        //---Logica para manejo de vistas---//
     //-Entrar a home si no esta en una pagina definida
     if(!isset($_GET['vista']) || $_GET['vista']==""){
         $_GET['vista']="inicio";
@@ -37,5 +34,6 @@
             include("./vistas/404.php");
         }
     } 
-*/
+    */
     ?>
+    </body>
