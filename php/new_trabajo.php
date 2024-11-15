@@ -75,8 +75,17 @@ $tipo_tutor=$tipo_tutor->query("SELECT * FROM tipo_tutor");
                     <div id="contenedorLineas">
                     </div> <br><br>
 
-                <label for="fecha">Fecha de entrega: </label>
-                    <input type="month" name="fecha" id="fecha"><br><br>
+                <label for="anio">Periodo de entrega: </label>
+                    <select id="anio" name="anio">
+                        <?php for($i=2000;$i<2035;$i++) { ?>
+                        <option value="<?php echo $i ?>"><?php echo $i ?></option>
+                        <?php } ?>
+                    </select>
+
+                <select name="periodo" id="periodo">
+                    <option value="I">I</option>
+                    <option value="II">II</option></select>
+                <br><br>
 
                 <label for="resumen">Resumen: </label> <br>
                     <textarea name="resumen" id="resumen"></textarea><br><br>
