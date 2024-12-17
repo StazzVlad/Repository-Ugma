@@ -1,5 +1,5 @@
  
  <br><br><br><br> 
  <?php
- echo '404';
+ echo ' ERROR 404';
  ?>

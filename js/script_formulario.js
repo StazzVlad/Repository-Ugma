@@ -21,7 +21,7 @@ function fetchAndSetData(url, formData,targetElement){
 
 function GetCarreras(){
     let facultad = cbxFacultad.value;
-    let url = 'php/getCarreras.php';
+    let url = 'getCarreras.php';
     let formData = new FormData();
     formData.append('facultad_id', facultad);
 
@@ -35,7 +35,7 @@ function GetCarreras(){
 
 function GetAreas(){
     let carreras = cbxCarreras.value;
-    let url = 'php/getAreas.php';
+    let url = 'getAreas.php';
     let formData = new FormData();
     formData.append('carrera_id', carreras);
 
@@ -95,7 +95,7 @@ function actualizarTutores() {
 function obtenerOpciones(selectElement) {
     const areaId = document.getElementById('area').value; // Asegúrate de tener el área_id disponible
 
-    fetch('php/GetLineas.php', {
+    fetch('GetLineas.php', {
         method: 'POST', // Cambia a POST
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded' // Establece el tipo de contenido

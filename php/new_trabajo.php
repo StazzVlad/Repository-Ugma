@@ -12,7 +12,7 @@ $tipo_tutor=$tipo_tutor->query("SELECT * FROM tipo_tutor");
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <title>Tu trabajo aqui papu</title>
+        <title>Subir trabajo</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,
          user-scalable=no, initial-scale=1, maximum-scale=1, minimun-scale=1">
@@ -20,12 +20,15 @@ $tipo_tutor=$tipo_tutor->query("SELECT * FROM tipo_tutor");
     <body>
         <main>
             <h1>Formulario</h1> 
-            <form action="./php/Save_Trabajo.php" autocomplete="off" method="POST" enctype="multipart/form-data" class="FormularioAjax">
+            <form action="Save_Trabajo.php" autocomplete="off" method="POST" enctype="multipart/form-data" class="FormularioAjax">
                 <label for="titulo">Titulo:</label><br>
                     <input type="text" name="titulo" id="titulo" placeholder="escriba el titulo"><br><br>
 
-                <label for="autor">Autor:</label><br>
-                    <input type="text" name="autor" id="autor" placeholder="escriba el autor"><br><br>
+                <label>Autor:</label><br>
+                    <label for="nombre_autor">Nombre:</label><br>
+                    <input type="text" name="nombre_autor" id="nombre_autor" placeholder="escriba el nombre"><br>
+                    <label for="apellido_autor">Apellido:</label><br>
+                    <input type="text" name="apellido_autor" id="apellido_autor" placeholder="escriba el apellido"><br><br>
 
                 <label for="nota">Nota de grado:</label><br>
                     <input type="text" name="nota" id="nota" placeholder="Nota de grado"><br><br>
@@ -75,8 +78,17 @@ $tipo_tutor=$tipo_tutor->query("SELECT * FROM tipo_tutor");
                     <div id="contenedorLineas">
                     </div> <br><br>
 
-                <label for="fecha">Fecha de entrega: </label>
-                    <input type="month" name="fecha" id="fecha"><br><br>
+                <label for="anio">Periodo de entrega: </label>
+                    <select id="anio" name="anio">
+                        <?php for($i=2000;$i<2035;$i++) { ?>
+                        <option value="<?php echo $i ?>"><?php echo $i ?></option>
+                        <?php } ?>
+                    </select>
+
+                <select name="periodo" id="periodo">
+                    <option value="I">I</option>
+                    <option value="II">II</option></select>
+                <br><br>
 
                 <label for="resumen">Resumen: </label> <br>
                     <textarea name="resumen" id="resumen"></textarea><br><br>
@@ -101,7 +113,7 @@ $tipo_tutor=$tipo_tutor->query("SELECT * FROM tipo_tutor");
                 <input type="submit">
 
             </form>
-            <script src="./js/ajax.js"></script>
-            <script src="./js/script_formulario.js" defer></script>
+            <script src="../js/ajax.js"></script>
+            <script src="../js/script_formulario.js" defer></script>
         </main>
     </body>
