@@ -12,7 +12,7 @@
          referrerpolicy="no-referrer" 
     />
 
-    <link rel="stylesheet" href="./css/estilos-header.css">
+    <link rel="stylesheet" href="/Repository-Ugma-main/css/estilos-header.css">
 
     <title>HEADER</title>
 </head>
@@ -21,27 +21,29 @@
         <div class="contenedor-header">
                 
             <div class="logo">
-                <img src="./img/UGMA-logo.png" alt="Logo">
+                <img src="/Repository-Ugma-main/img/UGMA-logo.png" alt="Logo">
                 <span>Universidad Noriental <br> "Gran Mariscal de Ayacucho"</span>
             </div>
 
             <nav>
                 <div class="buscador">
-                    <input type="search" placeholder="Buscar" class="input-primario">
-                    <button class="btn-primario-amarillo"><i class="fa-solid fa-magnifying-glass"></i></button>
-                </div>
 
+                    <form action="/Repository-Ugma-main/listado.php" method="get">
+                    <input type="search" name="q" placeholder="Buscar" class="input-primario">
+                    <button type="submit" class="btn-primario-amarillo"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </form>
+                </div>
                 <ul class="bar">
-                    <li><a href="#" class="active"><i class="fa-solid fa-house"></i></a></li>
+                    <li><a href="/Repository-Ugma-main/" class="active"><i class="fa-solid fa-house"></i></a></li>
 
                     <li><a href="#"><i class="fa-solid fa-book-open"></i> Sobre UGMA</a></li>
 
                     <li class="has-dropdown">
                         <a href="#"><i class="fa-solid fa-briefcase"></i> Trabajos <i class="fa-solid fa-chevron-down"></i></a>
                         <ul class="dropdown">
-                            <li><a href="#">Tesis pregrado</a></li>
+                            <li><a href="/Repository-Ugma-main/categorias.php?p=1&tipo=1">Tesis pregrado</a></li>
                             <li><a href="#">Tesis posgrado</a></li>
-                            <li><a href="#">Pasantías</a></li>
+                            <li><a href="/Repository-Ugma-main/categorias.php?p=1&tipo=2">Pasantías</a></li>
                         </ul>
                     </li>
 
@@ -85,6 +87,7 @@
                     <button class="btn-secundario-amarillo"><a href=""><i class="fa-brands fa-instagram only"></i></a></button>
                 </div>  
 
+
                 <div class="usuario">
                     <?php
                         error_reporting(0);
@@ -106,6 +109,7 @@
                     <!-- <button class="btn-enlace-azul"><a href="login.html"><i class="fa-solid fa-glasses"></i>Acceder</a></button>  -->
                     <button class="btn-primario-azul"><a href=""><i class="fa-solid fa-heart only"></i></a></button>
                 </div>
+
             </div>
         </div>
 
@@ -117,7 +121,6 @@
     <?php 
     error_reporting(0);
     $nombre_usuario = $_SESSION['nombre'];
-    echo "<p style=\"position:absolute;top:15% \">Hola '$nombre_usuario'</p>";
     
     ?>
     

@@ -1,10 +1,12 @@
 <?php
-
     require_once("main.php");
 
-    //---Guardamos los datos---//
+//---Tomamos los datos del formulario---//
+
     $titulo=limpiar_cadena($_POST['titulo']);
-    $autor=limpiar_cadena($_POST['autor']);
+    $nombre_autor=limpiar_cadena($_POST['nombre_autor']);
+    $apellido_autor=limpiar_cadena($_POST['apellido_autor']);
+    $autor=$nombre_autor." ".$apellido_autor;
     $nota=limpiar_cadena($_POST['nota']);
     $resumen=limpiar_cadena($_POST['resumen']);
 
@@ -23,11 +25,13 @@
     
     
 
-    //-Reset el tipo de archivo-//
+
+//Reset el tipo de archivo//
     $format = explode('/',$trabajo_tipo);
     $trabajo_tipo=$format[1];
 
-    //---Ruta para enviar el archivo--//
+//---Ruta para enviar el archivo--//
+
     $ruta="../trabajos";
     $rutas=[
         $ruta,
@@ -35,7 +39,7 @@
         $ruta.'/'.$facultad.'/'.$carrera
     ];
 
-/*
+
     //---Filtro para el foreach que verifica la integridad de los datos--//
     $filtros=[
         "$titulo" => "[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ., ]{1,250}",
@@ -44,7 +48,9 @@
         "$resumen" => "[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,;-º°]{4,5000}",
     ];
 
-    //---Verificando campos obligatorios ---//
+
+//---Verificando campos obligatorios ---//
+
     if($titulo==""||$autor==""||$nota==""||$resumen==""){
         echo'
             <div>
@@ -55,7 +61,9 @@
         exit();
     }
 
-  /*  //--- Verificando integridad de los datos ---//
+
+//--- Verificando integridad de los datos ---//
+    /*
     foreach($filtros as $variable=>$filtro){
         if(verificar_datos($filtro,$variable)){
             echo '
@@ -68,9 +76,8 @@
         }
     }
         */
-        /*
 
-    //--- Verificando titulo repetido ---//
+//--- Verificando titulo repetido ---//
     $check=conexion();
     $check=$check->query("SELECT trabajo_titulo FROM trabajo WHERE trabajo_titulo='$titulo'");
     if($check->rowCount()>0){
@@ -85,17 +92,22 @@
     $check=null;
 
 
-    //--- Guardar datos en base de datos---//
-    //- Verificando autor repetido -//
+
+//--- Guardar datos en base de datos---//
+//-- Verificando autor repetido --//
+
     $check=conexion();
     $check=$check->prepare("SELECT autor_nombre, autor_id FROM autor WHERE :autor = autor_nombre");
     $check->bindParam(':autor', $autor);
     $check->execute();
-    if($check->rowCount()>0){  //Si esta repetido, guarda $autor_id 
+
+//IF esta repetido, guarda $autor_id//
+    if($check->rowCount()>0){
         $id = $check->fetch(PDO::FETCH_ASSOC);
         $autor_id = $id['autor_id'];
-    } else{                   //Si no, Guarlado, extrae el id y guarda $autor_id
-            //- Guardamos autor -//
+//ELSE, Guarlado, extrae el id y guarda $autor_id//
+    } else{                  
+//Guardamos autor//
             $guardar = conexion();
             $guardar=$guardar->prepare("INSERT INTO autor(autor_nombre,sede_id,facultad_id,carrera_id) VALUES(:autor,:sede,:facultad,:carrera)");
             $marcadores=[
@@ -112,7 +124,9 @@
         }
         $guardar=null;
 
-        //- Extraemos id del autor recien guardado -//
+
+//Extraemos id del autor recien guardado//
+
         $autor_id = conexion(); // Conexión a la base de datos
         if (isset($autor)) {
             $query = $autor_id->prepare("SELECT autor_nombre, autor_id FROM autor WHERE :autor = autor_nombre");
@@ -120,8 +134,9 @@
             $query->execute();
         
             $id = $query->fetch(PDO::FETCH_ASSOC);
-        
-            // Verifica si se encontró un resultado
+
+    // Verifica si se encontró un resultado
+
             if ($id) {
                 $autor_id = $id['autor_id'];
             } else {
@@ -134,18 +149,34 @@
     }
     $check=null;
 
+//---Enviar archivo pdf---//
+
+       //-Verificar si la carpeta ya existe y crearla sino-//
+       foreach($rutas as $valor){
+        if(!file_exists($valor)){
+            if(!mkdir($valor,0777)){
+                echo "error al crear el directorio";
+                exit();
+            }
+        }
+        chmod($valor,0777); //Asignarle permisos de lectura y escritura//
+    }
 
 
-        //-- Guardamos trabajo --//
+
+
+//-- Guardamos trabajo --//
     $guardar = conexion();
-    $guardar=$guardar->prepare("INSERT INTO trabajo(trabajo_titulo,trabajo_resumen,trabajo_año,trabajo_periodo,trabajo_nota_grado,autor_id) VALUES(:titulo,:resumen,:anio,:periodo,:nota,:autor)");
+    $guardar=$guardar->prepare("INSERT INTO trabajo(trabajo_titulo,trabajo_resumen,trabajo_año,trabajo_periodo,trabajo_nota_grado,trabajo_link,autor_id) VALUES(:titulo,:resumen,:anio,:periodo,:nota,:link,:autor)");
     $marcadores=[
       ":titulo"=>$titulo,
       ":resumen"=>$resumen,
       ":anio"=>$anio,
       ":periodo"=>$periodo,
       ":nota"=>$nota,
+      ":link"=>$nombreNuevo,
       ":autor"=>$autor_id
+
     ];
     $guardar->execute($marcadores);
 
@@ -156,7 +187,8 @@
     }
     $guardar=null;
 
-    //- Extraemos id del trabajo recien guardado -//
+
+//Extraemos id del trabajo recien guardado//
     $trabajo_id = conexion(); // Conexión a la base de datos
     if (isset($autor)) {
         $query = $trabajo_id->prepare("SELECT trabajo_titulo, trabajo_id FROM trabajo WHERE :titulo = trabajo_titulo");
@@ -174,8 +206,7 @@
     } else {
         echo "La variable \$trabajo no está definida.";
     }
-
-    //-- Guardamos detalles --//
+//-- Guardamos detalles --//
     $guardar = conexion();
     $guardar=$guardar->prepare("INSERT INTO trabajo_detalles(trabajo_id,sede_id,facultad_id,carrera_id,area_id) VALUES(:trabajo,:sede,:facultad,:carrera,:area)");
     $marcadores=[
@@ -189,12 +220,13 @@
 
     if($guardar->rowCount()==1){
             echo "Ya esta hecho papi";
+
     }else{
             echo "Mala mia manito";
     }
     $guardar=null;
 
-    //-- Guardamos tipo trabajo --//
+//-- Guardamos tipo trabajo --//
     $guardar = conexion();
     $guardar=$guardar->prepare("INSERT INTO trabajo_x_tipo_trabajo(trabajo_id,tipo_trabajo_id) VALUES(:trabajo,:tipo)");
     $marcadores=[
@@ -210,7 +242,7 @@
     }
     $guardar=null;
 
-    //-- Guardamos lineas de investigacion --//
+//-- Guardamos lineas de investigacion --//
     $guardar = conexion();
     //Obtenemos los id de las lineas seleccionadas
     for($i=1;$i<=3;$i++){
@@ -227,7 +259,7 @@
     $guardar=null;
 
 
-        //-- Guardamos los tutores x trabajo --//
+//-- Guardamos los tutores x trabajo --//
         $guardar = conexion();
      //Obtenemos los id y nombres de los tutores del trabajo
      for($i=1;$i<=3;$i++){
@@ -271,25 +303,6 @@
         }
     };
     $guardar=null;
-*/
-    //---Enviar archivo pdf---//
-
-       //-Verificar si la carpeta ya existe y crearla sino-//
-    foreach($rutas as $valor){
-        if(!file_exists($valor)){
-            if(!mkdir($valor,0777)){
-                echo "error al crear el directorio";
-                exit();
-            }
-        }
-        chmod($valor,0777); //Asignarle permisos de lectura y escritura//
-    }
-
-    if(move_uploaded_file($trabajo_ruta,$rutas[2].'/'.$anio.'-'.$autor.'.'.$trabajo_tipo)){
-        echo "archivo subido con exito";
-    }else{
-        echo "error al subir el archivo";
-    }
-
+    
 
 ?>
