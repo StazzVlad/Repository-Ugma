@@ -27,6 +27,7 @@
 
             <nav>
                 <div class="buscador">
+
                     <form action="/Repository-Ugma-main/listado.php" method="get">
                     <input type="search" name="q" placeholder="Buscar" class="input-primario">
                     <button type="submit" class="btn-primario-amarillo"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -85,6 +86,30 @@
                     <button class="btn-secundario-azul"><a href=""><i class="fa-brands fa-facebook only"></i></a></button>
                     <button class="btn-secundario-amarillo"><a href=""><i class="fa-brands fa-instagram only"></i></a></button>
                 </div>  
+
+
+                <div class="usuario">
+                    <?php
+                        error_reporting(0);
+                        $validar = $_SESSION['nombre'];
+                        if($validar == null || $validar = ''){
+                            echo('
+                                <button class="btn-enlace-azul"><a href="./index.php?login&registrarse"><i class="fa-solid fa-user"></i>Registrarse</a></button>
+                                <button class="btn-enlace-azul"><a href="./index.php?login"><i class="fa-solid fa-glasses"></i>Acceder</a></button>                                
+                            ') ;
+                        }
+                        else{
+                            echo('
+                                <button class="btn-enlace-azul"><a href="#"><i class="fa-solid fa-user"></i>Mi Perfil</a></button>  
+                                <button class="btn-enlace-azul"><a href="./vistas/logout.php"><i class="fa-solid fa-user"></i>Cerrar Sesion</a></button>  
+                            ');               
+                        }
+                    ?>
+                    
+                    <!-- <button class="btn-enlace-azul"><a href="login.html"><i class="fa-solid fa-glasses"></i>Acceder</a></button>  -->
+                    <button class="btn-primario-azul"><a href=""><i class="fa-solid fa-heart only"></i></a></button>
+                </div>
+
             </div>
         </div>
 

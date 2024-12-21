@@ -167,7 +167,9 @@ nav {
     align-items: flex-end;
 }
 
-.ugma {
+
+.ugma, .usuario {
+
     display: flex; 
     justify-content: center;
     max-width: 100%;
@@ -204,6 +206,16 @@ nav {
     font-size: 1rem;
 }
 
+
+
+main {
+    position: relative;
+    top: 6.25rem;
+    height: 500px;
+    width: 100%;
+    background: var(--color-seccion);
+
+
 main {
     position: relative;
     top: 6.25rem;
@@ -225,7 +237,12 @@ main {
         font-size: .8rem;
     }
 
+    .usuario a {
+
+        font-size: .8rem;
+    }
 }
+
 
 
 @media (width: 1024px) {

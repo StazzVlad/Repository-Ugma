@@ -25,11 +25,13 @@
     
     
 
+
 //Reset el tipo de archivo//
     $format = explode('/',$trabajo_tipo);
     $trabajo_tipo=$format[1];
 
 //---Ruta para enviar el archivo--//
+
     $ruta="../trabajos";
     $rutas=[
         $ruta,
@@ -37,7 +39,8 @@
         $ruta.'/'.$facultad.'/'.$carrera
     ];
 
-//---Filtro para el foreach que verifica la integridad de los datos--//
+
+    //---Filtro para el foreach que verifica la integridad de los datos--//
     $filtros=[
         "$titulo" => "[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ., ]{1,250}",
         "$autor" => "[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{1,50}",
@@ -45,7 +48,9 @@
         "$resumen" => "[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,;-º°]{4,5000}",
     ];
 
+
 //---Verificando campos obligatorios ---//
+
     if($titulo==""||$autor==""||$nota==""||$resumen==""){
         echo'
             <div>
@@ -55,6 +60,7 @@
         ';
         exit();
     }
+
 
 //--- Verificando integridad de los datos ---//
     /*
@@ -70,7 +76,6 @@
         }
     }
         */
-        
 
 //--- Verificando titulo repetido ---//
     $check=conexion();
@@ -87,12 +92,15 @@
     $check=null;
 
 
+
 //--- Guardar datos en base de datos---//
 //-- Verificando autor repetido --//
+
     $check=conexion();
     $check=$check->prepare("SELECT autor_nombre, autor_id FROM autor WHERE :autor = autor_nombre");
     $check->bindParam(':autor', $autor);
     $check->execute();
+
 //IF esta repetido, guarda $autor_id//
     if($check->rowCount()>0){
         $id = $check->fetch(PDO::FETCH_ASSOC);
@@ -116,7 +124,9 @@
         }
         $guardar=null;
 
+
 //Extraemos id del autor recien guardado//
+
         $autor_id = conexion(); // Conexión a la base de datos
         if (isset($autor)) {
             $query = $autor_id->prepare("SELECT autor_nombre, autor_id FROM autor WHERE :autor = autor_nombre");
@@ -124,8 +134,9 @@
             $query->execute();
         
             $id = $query->fetch(PDO::FETCH_ASSOC);
-        
+
     // Verifica si se encontró un resultado
+
             if ($id) {
                 $autor_id = $id['autor_id'];
             } else {
@@ -151,15 +162,6 @@
         chmod($valor,0777); //Asignarle permisos de lectura y escritura//
     }
 
-    $nombreNuevo = $rutas[2] ."/". uniqid($anio . '-' . $autor.'-') .".". $trabajo_tipo;
-
-    if(move_uploaded_file($trabajo_ruta,$nombreNuevo)){
-        echo "archivo subido con exito";
-
-    }else{
-        echo "error al subir el archivo";
-        exit();
-    }
 
 
 
@@ -174,6 +176,7 @@
       ":nota"=>$nota,
       ":link"=>$nombreNuevo,
       ":autor"=>$autor_id
+
     ];
     $guardar->execute($marcadores);
 
@@ -183,6 +186,7 @@
             echo "Trabajo fallo";
     }
     $guardar=null;
+
 
 //Extraemos id del trabajo recien guardado//
     $trabajo_id = conexion(); // Conexión a la base de datos
@@ -216,6 +220,7 @@
 
     if($guardar->rowCount()==1){
             echo "Ya esta hecho papi";
+
     }else{
             echo "Mala mia manito";
     }
