@@ -51,7 +51,7 @@
 
             <!-- 2) Usuario -->
                 <div class="usuario">
-                    <img src="./img/coneja secuetradora.JPG" alt="imagen admin">
+                    <img src="./img/6325109.png" alt="imagen admin">
 
                     <div class="cargo">
                         <span>Cargo:</span><p>
@@ -84,13 +84,13 @@
                 ✔ La clase .side-dropdown engloba a los elementos li desplegables y en conjunto con js permite que pueda mostrase u ocultarse
             -->
             <ul class="side-menu">
-                <li><a href="#" class="active"><i class="fa-solid fa-table-columns icon"></i>Panel</a></li>
+                <li><a href="#" class="active" id="panel"><i class="fa-solid fa-table-columns icon"></i>Panel</a></li>
 
                 <!--separador: JEFE FACULTAD -->
-                    <li class="divider" data-text="jefe de facultad"></li> <!--li separador-->
+                    <li class="divider" data-text="Trabajos de grado"></li> <!--li separador-->
                             
                     <li>
-                        <a href="#"><i class="fa-solid fa-briefcase icon"></i>Gestionar trabajos<i class="fa-solid fa-chevron-down icon-derecho"></i></i></a>
+                        <a href="#" id="panel"><i class="fa-solid fa-briefcase icon"></i>Gestionar trabajos<i class="fa-solid fa-chevron-down icon-derecho"></i></i></a>
 
                         <ul class="side-dropdown">
                             <?php 
@@ -109,8 +109,8 @@
                                         break;
                                     default:
                                         echo '
-                                        <li><a href="#"> Tesis de pregrado</a></li>
-                                        <li><a href="#"> Tesis de posgrado</a></li>
+                                        <li><a href="#" id="pregrado"> Tesis de pregrado</a></li>
+                                        <li><a href="#" id=""> Tesis de posgrado</a></li>
                                         <li><a href="#"> Pasantías</a></li>
                                         ';
 
@@ -121,23 +121,27 @@
                         </ul>
                     </li>
 
-                    <li><a href="#"><i class="fa-solid fa-glasses icon"></i> Gestionar lineas de investigación</a></li>
-
-                    <li><a href="#"><i class="fa-solid fa-book icon"></i> Gestionar áreas de conocimiento</a></li>
-                   
+                    
                 
                 <!--separador: ADMINISTRADOR -->
                   
                     <li class="divider" data-text="administrador"></li> <!-- li separador-->
 
-                    <li><a href="#"><i class="fa-solid fa-user icon"></i></i> Gestionar usuarios</a></li>
+                    <li><a href="#" ><i class="fa-solid fa-user icon"></i></i> Gestionar usuarios</a></li>
 
                     <li>
-                        <a href="#"><i class="fa-solid fa-landmark icon"></i> Gestionar facultades</a>
+                        <a href="#" id="proxi"><i class="fa-solid fa-landmark icon"></i> Gestionar facultades</a>
                     </li>
 
                     <li>
-                        <a href="#"><i class="fa-solid fa-graduation-cap icon"></i> Gestionar carreras</a>
+                        <a href="#" id="proxi"><i class="fa-solid fa-graduation-cap icon"></i> Gestionar carreras</a>
+                    </li>
+                    <li>
+                        <a href="#" id="proxi"><i class="fa-solid fa-glasses icon"></i> Gestionar lineas de investigación</a>
+                    </li>
+
+                    <li>
+                        <a href="#" id="proxi"><i class="fa-solid fa-book icon"></i> Gestionar áreas de conocimiento</a>
                     </li>
                 
             </ul>
@@ -166,7 +170,7 @@
 
                 <!-- Perfil para configuracion de usuario -->
                     <div class="perfil">
-                        <img src="img/coneja secuetradora.JPG" alt="">
+                        <img src="img/6325109.png" alt="">
                         <ul class="perfil-link">
                             <li><a href="#"><i class="fa-solid fa-pen-to-square icon"></i>Editar perfil</a></i></li>
                             <li><a href="./vistas/logout.php"><i class="fa-solid fa-right-from-bracket icon"></i> Salir</a></i></li>
@@ -178,150 +182,10 @@
             Todo lo que cambia en cada pagina que pertenezca al panel de administracion 
                 BIENVENIDO / INDICADOR DE PAGINA / INFO-DATA (cuadritos de porcentajes): pregrado, posgrado, pasantias
         -->
-            <main>
-                <?php
-                    $nombre_usuario = $_SESSION['nombre'];
-                    echo '<h1 class="bienvenido">Bienvenido, '.$nombre_usuario.'</h1>';
-                ?>
+            <main id="main-content">
+            <?php $nombre_usuario = $_SESSION['nombre'];
+            echo '<h1 class="bienvenido">Bienvenido, '.$nombre_usuario.'</h1>'; ?>
 
-                <!-- INDICADOR PAGINA
-                    Para indicarle al usuario donde se encuentra dentro de las categorias que son desplegables u opciones con formularios que puedan cambiar
-
-                    ejemplo: GESTIONAR TRABAJOS / pasantias / subir pasantia
-                             GESTIONAR CARRERA / agregar carrera
-                             PERFIL / cambio de contraseña
-                -->
-                <ul class="indicador-pagina">
-                    <li><a href="#">Inicio</a></li>
-
-                    <li class="divider">/</li>
-
-                    <li><a href="#" class="active">Panel principal</a></li>
-                </ul>
-
-                
-                <!-- INFO-DATA
-                    Numeros que indican los trabajos que se hallan en la base de datos
-                        ✔ Cada clase .card es un cuadrito
-
-                        ✔ Los H2 señalan la cantidad de trabajos que hay por categoria en la base de datos 
-                            (pregrado, posgrado, pasantias)
-
-                        ✔ los span con la clase .progreso son las barras azules que indican que porcentaje es esa categoria, 
-                            para modificar su largo se actualiza el valor del atributo "data-value"
-
-                        ✔ label es el porcentaje
-                -->
-                <div class="info-data">
-
-                    <!-- trabajos -->
-                    <div class="card">
-                        <div class="porcentajes">
-                            <div>
-                                <h2><!-- 1500 -->
-                                    <?php
-                                        require_once("./php/contarTrabajos.php");
-                                        echo "$totalTrabajos";  
-                                    ?>
-                                </h2>
-                                <p>Trabajos</p>
-                            </div>
-                            <i class="fa-solid fa-briefcase icon"></i>
-                        </div>
-
-                        <span class="progreso" data-value="100%"></span>
-                        <span class="label">100%</span>
-                    </div>
-                    
-                    <!-- pregrado -->
-                    <div class="card"> 
-                        <div class="porcentajes">
-                            <div>
-                                <h2><!--900-->
-                                <?php
-                                        require_once("./php/contarTrabajos.php");
-                                        echo "$totalPregrado";  
-                                ?>
-
-                                </h2>
-                                <p>Tesis de pregrado</p>
-                            </div>
-                            <i class="fa-solid fa-briefcase icon"></i>
-                        </div>
-                            
-                        <?php
-                            require_once("./php/contarTrabajos.php");
-                            $porcentaje = $totalPregrado*100/$totalTrabajos;
-                            $porcentaje = round($porcentaje,2);
-                            echo '
-                                <span class="progreso" data-value='."$porcentaje%".'></span>
-
-                                <span class="label">'."$porcentaje%".'</span>
-                            ';  
-                        
-                        ?>
-                    </div>
-                    
-                    <!-- posgrado -->
-                    <div class="card">
-                        <div class="porcentajes">
-                            <div>
-                                <h2><!--900-->
-                                <?php
-                                        require_once("./php/contarTrabajos.php");
-                                        echo "$totalPosgrado";  
-                                ?>
-
-                                </h2>
-                                <p>Tesis de posgrado</p>
-                            </div>
-                            <i class="fa-solid fa-briefcase icon"></i>
-                        </div>
-                        
-                        <?php
-                            require_once("./php/contarTrabajos.php");
-                            $porcentaje = $totalPosgrado*100/$totalTrabajos;
-                            $porcentaje = round($porcentaje,2);
-                            echo '
-                                <span class="progreso" data-value='."$porcentaje%".'></span>
-
-                                <span class="label">'."$porcentaje%".'</span>
-                            ';  
-                        
-                        ?>
-
-                    </div>
-                    
-                     <!-- pasantias -->
-                    <div class="card">
-                        <div class="porcentajes">
-                            <div>
-                                <h2>
-                                <?php
-                                        require_once("./php/contarTrabajos.php");
-                                        echo "$totalPasantia";  
-                                ?>
-                                </h2>
-                                <p>Pasantías</p>
-                            </div>
-                            <i class="fa-solid fa-briefcase icon"></i>
-                        </div>
-
-                        <?php
-                            require_once("./php/contarTrabajos.php");
-                            $porcentaje = $totalPasantia*100/$totalTrabajos;
-                            $porcentaje = round($porcentaje,2);
-                            echo '
-                                <span class="progreso" data-value='."$porcentaje%".'></span>
-
-                                <span class="label">'."$porcentaje%".'</span>
-                            ';  
-                        
-                        ?>
-
-                    </div>
-
-                </div>
             </main>
     </section>
 
