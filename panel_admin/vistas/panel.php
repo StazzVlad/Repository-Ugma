@@ -51,7 +51,7 @@
                             <i class="fa-solid fa-briefcase icon"></i>
                         </div>
 
-                        <span class="progreso" data-value="100%"></span>
+                        <span class="progreso" data-value="100%" style="--value: 100%;"></span>
                         <span class="label">100%</span>
                     </div>
                     
@@ -76,9 +76,9 @@
                             $porcentaje = $totalPregrado*100/$totalTrabajos;
                             $porcentaje = round($porcentaje,2);
                             echo '
-                                <span class="progreso" data-value='."$porcentaje%".'></span>
+                                <span class="progreso" data-value='."$porcentaje%".' style="--value: '.$porcentaje.'%;"></span>
 
-                                <span class="label">'."$porcentaje%".'</span>
+                                <span class="label">'."$porcentaje%".' </span>
                             ';  
                         
                         ?>
@@ -105,7 +105,7 @@
                             $porcentaje = $totalPosgrado*100/$totalTrabajos;
                             $porcentaje = round($porcentaje,2);
                             echo '
-                                <span class="progreso" data-value='."$porcentaje%".'></span>
+                                <span class="progreso" data-value='."$porcentaje%".' style="--value: '.$porcentaje.'%;"></span>
 
                                 <span class="label">'."$porcentaje%".'</span>
                             ';  
@@ -134,7 +134,7 @@
                             $porcentaje = $totalPasantia*100/$totalTrabajos;
                             $porcentaje = round($porcentaje,2);
                             echo '
-                                <span class="progreso" data-value='."$porcentaje%".'></span>
+                                <span class="progreso" data-value='."$porcentaje%".' style="--value: '.$porcentaje.'%;"></span>
 
                                 <span class="label">'."$porcentaje%".'</span>
                             ';  

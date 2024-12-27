@@ -100,13 +100,16 @@ function loadContent(contentId) {
 
     switch(contentId) {
         case 'panel':
-            url = '/Repository/panel_admin/vistas/panel.php'; // Ruta al archivo PHP
+            url = '/Repository-ugma-main/panel_admin/vistas/panel.php'; // Ruta al archivo PHP
             break;
         case 'pregrado':
-            url = '/Repository/panel_admin/vistas/pregrado.php'; // Cambia esto por la ruta correcta si existe
+            url = '/Repository-ugma-main/panel_admin/vistas/pregrado.php'; // Cambia esto por la ruta correcta si existe
             break;
+        case 'usuarios':
+            url = '/Repository-ugma-main/panel_admin/vistas/usuarios.php'; // Caso para gestion de usuarios            
+            break;  
         case 'proxi':
-            url = '/Repository/panel_admin/vistas/proximamente.php'; // Caso para cuando una pagina aun no este disponible
+            url = '/Repository-ugma-main/panel_admin/vistas/proximamente.php'; // Caso para cuando una pagina aun no este disponible
             break;
         // Agrega más casos según sea necesario
         default:
@@ -129,4 +132,9 @@ function loadContent(contentId) {
             console.error('Error:', error);
             mainContent.innerHTML = '<h2>Error al cargar contenido</h2>'; // Mensaje de error
         });
+
+    setTimeout(() => { //Para detectar formularios ajax de php cargado
+            console.log('Se actualizan el ajax después de 2 segundos');
+            recargarVariables();
+    }, 2000); //2s de retraso
 }

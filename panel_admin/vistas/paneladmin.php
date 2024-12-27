@@ -127,7 +127,7 @@
                   
                     <li class="divider" data-text="administrador"></li> <!-- li separador-->
 
-                    <li><a href="#" ><i class="fa-solid fa-user icon"></i></i> Gestionar usuarios</a></li>
+                    <li><a href="#" id="usuarios"><i class="fa-solid fa-user icon"></i></i> Gestionar usuarios</a></li>
 
                     <li>
                         <a href="#" id="proxi"><i class="fa-solid fa-landmark icon"></i> Gestionar facultades</a>
@@ -193,5 +193,7 @@
 
 <footer></footer>
 <script src="js/admin-script.js"></script>
+<script src="js/ajax.js"></script>
+<script src="js/gestion-usuarios.js"></script>
 </body>
 </html>
