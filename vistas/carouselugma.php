@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,
          user-scalable=no, initial-scale=1, maximum-scale=1, minimun-scale=1">
-         <link rel="stylesheet" href="estilos-carousel.css">
+         <link rel="stylesheet" href="css/estilos-carousel.css">
 
          <link rel="stylesheet" 
          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" 
@@ -20,22 +20,23 @@
     </head>
     <body>
         <main>
+        
             <div class="slider">
                 <div class="list">
                     <div class="item">
-                        <img src="img.jpeg" alt="">
+                        <img src="img/img.jpeg" alt="">
                     </div>
                     <div class="item">
-                        <img src="img.jpeg" alt="">
+                        <img src="img/img.jpeg" alt="">
                     </div>
                     <div class="item">
-                        <img src="img.jpeg" alt="">
+                        <img src="img/img.jpeg" alt="">
                     </div>
                     <div class="item">
-                        <img src="img.jpeg" alt="">
+                        <img src="img/img.jpeg" alt="">
                     </div>
                     <div class="item">
-                        <img src="img.jpeg" alt="">
+                        <img src="img/img.jpeg" alt="">
                     </div>
                 </div>
                 <div class="buttons">
@@ -95,5 +96,6 @@
                     reloadSlider();
                 };
             </script>
+            
         </main>
     </body>
